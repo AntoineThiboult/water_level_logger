@@ -36,6 +36,9 @@
 #define MAX_DISTANCE 500 // Maximum distance to measure (in cm)
 #define SAMPLES 3        // Number of measurements to average
 
+// Setup constants
+float sensorHeight = 134;
+
 // Create objects
 RTC_DS3231 rtc;
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE);
@@ -50,7 +53,7 @@ float getAverageDistance() {
     totalDistance += sonar.ping_cm();
     delay(500);
   }
-  return totalDistance / SAMPLES;
+  return (totalDistance / SAMPLES) - sensorHeight;
 }
 
 
@@ -184,7 +187,7 @@ void loop() {
   if (alarmFlag) {
     alarmFlag = false;  // Reset the flag
     
-    // Your code to execute on every minute
+    // Code to execute while waking up
     DateTime now = rtc.now();
     Serial.print("Woke up at: ");
     Serial.println(now.timestamp());
