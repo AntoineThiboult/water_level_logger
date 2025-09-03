@@ -23,7 +23,7 @@
 //    MISO: D12
 //    MOSI: D11
 //    SCK: D13
-//    CS: D10uuu
+//    CS: D10
 
 // Pin definitions
 #define TRIG_PIN 3
